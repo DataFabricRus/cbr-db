@@ -28,6 +28,9 @@ def write_csv_by_path(dbf_records, csv_path, field_name_selection, form, dt):
                 else:
                     skip = True
 
+            if form in ["123","135"]:
+                rec_dict["DT"] = date2iso(dt)
+
             if form == "102":
                 # fix (fill with zeros) SIM_R and SIM_V
                 for c in ("SIM_R", "SIM_V"):

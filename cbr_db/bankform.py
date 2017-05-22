@@ -97,9 +97,18 @@ def get_date_endpoints(args):
     form = args['<form>']
 
     if args['--all-dates']:
-        # Risk: hard-coded constant
-        start_date = date(2004, 2, 1)
-        end_date = date.today().replace(day=1)
+        if args['<form>'] in ['101']:
+            start_date = date(2004, 2, 1)
+            end_date = date.today().replace(day=1)
+        elif args['<form>'] == '123':
+            start_date = date(2014, 2, 1)
+            end_date = date.today().replace(day=1)
+        elif args['<form>'] == '102':
+            start_date = date(2004, 1, 1)
+            end_date = date.today().replace(day=1)
+        elif args['<form>'] == '135':
+            start_date = date(2010, 6, 1)
+            end_date = date.today().replace(day=1)
 
     # process first timestamp
     if args['<timestamp1>'] is not None:

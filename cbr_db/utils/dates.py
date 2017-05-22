@@ -184,7 +184,7 @@ def date2timestamp(form, dt):
     form = str(form)
 
     # Risk: must keet this hardcoded, different code will apply to different <form>
-    if form == "101":
+    if form in ["101","123","135"]:
         # filename timestamp is one month behind
         if dt.month == 1:
             year = dt.year - 1

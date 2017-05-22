@@ -8,7 +8,7 @@ f101 = {
         'name': "bank accounts - short file",
         'postfix': "_B",
         'db_table': 'bulk_f101_b',
-        'dbf_fields': ['DT', 'REGN', 'NUM_SC', 'A_P', 'ITOGO'],
+        'dbf_fields': ['REGN', 'PLAN', 'NUM_SC', 'ITOGO', 'A_P', 'DT'],
         'regex': r"^([0-9]{2})(20[0-9]{2})(_B).DBF$"
     },
 
@@ -17,8 +17,39 @@ f101 = {
         'name': "bank accounts - long file",
         'postfix': "B1",
         'db_table': 'bulk_f101b1',
-        'dbf_fields': ['DT', 'REGN', 'NUM_SC', 'A_P', 'IR', 'IV', 'IITG'],
+        'dbf_fields': ['REGN', 'PLAN', 'NUM_SC', 'A_P', 'VR', 'VV', 'VITG', 'ORA', 'OVA', 'OITGA', 'ORP', 'OVP', 'OITGP', 'IR', 'IV', 'IITG', 'DT', 'PRIZ'],
         'regex': r"^([0-9]{2})(20[0-9]{2})(B1).DBF$"
+    }
+}
+
+f135 = {
+    'f135_1': {
+        'tag': 'f135_1',
+        'name': "Данные раздела 1 формы 0409135",
+        'postfix': "_135_1",
+        'db_table': "bulk_f135_1",
+        'dbf_fields': ['DT', 'REGN', 'C1_1', 'C2_1'],
+        'regex': r"^([0-9]{2})(20[0-9]{2})(_135_1).DBF"
+    },
+    'f135_2': {
+        'tag': 'f135_2',
+        'name': "Данные раздела 2 формы 0409135",
+        'postfix': "_135_2",
+        'db_table': "bulk_f135_2",
+        'dbf_fields': ['DT', 'REGN', 'C1_2', 'C2_2'],
+        'regex': r"^([0-9]{2})(20[0-9]{2})(_135_2).DBF"
+    }
+
+}
+
+f123 = {
+    'f123': {
+        'tag': 'f123',
+        'name': "Bazel",
+        'postfix': "_123D",
+        'db_table': "bulk_f123",
+        'dbf_fields': ['DT', 'REGN', 'C1', 'C3'],
+        'regex': r"^([0-9]{2})(20[0-9]{2})(_123D).DBF"
     }
 }
 
@@ -44,7 +75,9 @@ f102 = {
 
 FORM_DATA = {
     '101': f101,
-    '102': f102
+    '102': f102,
+    '123': f123,
+    '135': f135
 }
 
 
