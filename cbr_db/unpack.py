@@ -27,6 +27,9 @@ def unpack_path(filepath, form):
     # NOTE: `unrar e` may do nothing if target directory does not exist.
     if not os.path.isdir(destination_directory):
         os.makedirs(destination_directory)
+    if not os.path.isfile(filepath):
+        print("File not found: {}".format(filepath))
+        return
     if ext == 'rar':
         _unpack_rar(filepath, destination_directory)
     elif ext == 'zip':

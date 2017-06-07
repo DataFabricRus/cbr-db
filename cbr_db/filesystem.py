@@ -113,14 +113,16 @@ def make_csv_filename(dbf_filename, db_table_name):
         return db_table_name + "." + dbf_filename[:-4]
 
 
-def make_dbf_filename(isodate, postfix, form):
+def make_dbf_filename(isodate, info, form):
     """
     Returns input DBF filename for the given date and form.
     postfix is appended to file name before extension.
     """
     ts = isodate2timestamp(form, isodate)
-    dbf_filename = ts + postfix + ".DBF"
-    return dbf_filename
+    if form in ["nfo", "kfo"]:
+        return info['name'] + ts + ".DBF"
+    else:
+        return ts + info['postfix'] + ".DBF"
 
 
 def get_csv_files(isodate, form):

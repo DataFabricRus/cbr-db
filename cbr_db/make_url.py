@@ -39,10 +39,13 @@ def get_ziprar_filename(isodate, form):
     extension = get_extension(date)
 
     form = str(form)
-    # TODO: remove harcoded form check
-    if form not in ('101', '102', '123', '135'):
+
+    if form in ['kfo', 'nfo']:
+        return "{}-{}{}.zip".format(form, year, month)
+    elif form in ['101', '102', '123', '135']:
+        return "{}-{}{}01.{}".format(form, year, month, extension)
+    else:
         raise ValueError('Form {} not supported yet.'.format(form))
-    return "{}-{}{}01.{}".format(form, year, month, extension)
 
 
 def get_extension(date):

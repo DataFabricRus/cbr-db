@@ -183,20 +183,23 @@ def date2timestamp(form, dt):
     """
     form = str(form)
 
+    # filename timestamp is one month behind
+    if dt.month == 1:
+        year = dt.year - 1
+        month = 12
+    else:
+        year = dt.year
+        month = dt.month - 1
+
     # Risk: must keet this hardcoded, different code will apply to different <form>
     if form in ["101","123","135"]:
-        # filename timestamp is one month behind
-        if dt.month == 1:
-            year = dt.year - 1
-            month = 12
-        else:
-            year = dt.year
-            month = dt.month - 1
         return zero_padded_month(month) + str(year)
-    elif form == '102':
+    elif form in ['102']:
         # deals in quarters
         year, quarter = date2quarter(dt)
         return "{}{}".format(quarter, year)
+    elif form in ['nfo', 'kfo']:
+        return "{}{}".format(str(year % 100),  zero_padded_month(month))
     else:
         raise ValueError("Form not supported: " + form)
 
@@ -267,7 +270,7 @@ def get_last_date_in_year(dt, form):
     current_year_dec1_date = dt.replace(month=12)
     dt = min(current_month_day_1, current_year_dec1_date)
 
-    if form == '102':  # use quarter notation
+    if form in ['102','kfo','nfo']:  # use quarter notation
         if current_year_dec1_date == dt:
             # we can get the end of the 4 quarter that is in the next year
             dt = dt.replace(year=dt.year + 1, month=1)

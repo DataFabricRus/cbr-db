@@ -332,7 +332,7 @@ def dbf2csv(isodate, form):
     # For example, form 101 has two subforms: f101_B and f101B1.
     for subform, info in FORM_DATA[form].items():
         # Get DBF file (input)
-        dbf_filename = make_dbf_filename(isodate, info['postfix'], form)
+        dbf_filename = make_dbf_filename(isodate, info, form)
         dbf_path = os.path.join(dbf_dir, dbf_filename)
         if not os.path.isfile(dbf_path):
             print("File {0} not found".format(dbf_filename))

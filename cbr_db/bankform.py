@@ -51,7 +51,7 @@ from .utils.dates import get_date, get_next_quarter_end_date,\
     get_date_range, get_last_date_in_year
 
 EOL = "\n"
-SUPPORTED_FORMS = ['101', '102', '123', '134', '135']
+SUPPORTED_FORMS = ['101', '102', '123', '134', '135', 'kfo', 'nfo']
 
 
 def get_selected_form(arg):
@@ -80,7 +80,7 @@ def get_date_range_from_command_line(args):
     """
     s, e = get_date_endpoints(args)
     step = 1
-    if args['<form>'] == '102':
+    if args['<form>'] in ('102','kfo','nfo'):
         step = 3
     if s and e:
         return [d.isoformat() for d in get_date_range(s, e, step)]
@@ -95,7 +95,6 @@ def get_date_endpoints(args):
     start_date = None
     end_date = None
     form = args['<form>']
-
     if args['--all-dates']:
         if args['<form>'] in ['101']:
             start_date = date(2004, 2, 1)
@@ -107,7 +106,13 @@ def get_date_endpoints(args):
             start_date = date(2004, 1, 1)
             end_date = date.today().replace(day=1)
         elif args['<form>'] == '135':
-            start_date = date(2010, 6, 1)
+            start_date = date(2011, 2, 1)
+            end_date = date.today().replace(day=1)
+        elif args['<form>'] == 'kfo':
+            start_date = date(2014, 7, 1)
+            end_date = date.today().replace(day=1)
+        elif args['<form>'] == 'nfo':
+            start_date = date(2015, 7, 1)
             end_date = date.today().replace(day=1)
 
     # process first timestamp

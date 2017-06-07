@@ -37,9 +37,12 @@ def write_csv_by_path(dbf_records, csv_path, field_name_selection, form, dt):
                     if c in field_name_selection and rec_dict[c] is None:
                         rec_dict[c] = 0
 
+            if form in ["102","kfo","nfo"]:
                 # add date, year and quarter
                 rec_dict["DT"] = date2iso(dt)
 
+                if "YEAR1" in field_name_selection:
+                    rec_dict["YEAR1"] = rec_dict["YEAR"]
                 qt_year, qt_month = date2quarter(dt)
                 rec_dict["YEAR"] = qt_year
                 rec_dict["QUART"] = qt_month
